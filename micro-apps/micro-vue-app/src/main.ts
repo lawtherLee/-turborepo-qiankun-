@@ -29,6 +29,7 @@ function render(props: any) {
   const router = createRouter({
     history: createWebHashHistory(),
     routes: newRoutes,
+    // base: "/microVueApp",
   });
 
   app = createApp(AppComponent);

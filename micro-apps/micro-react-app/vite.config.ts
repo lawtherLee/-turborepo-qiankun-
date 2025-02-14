@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
   const isDev = env.VITE_APP_ENV == "development";
 
   return {
-    base: '/microReactApp/',
+    base: "/microReactApp/",
     plugins: [
       qiankun("microReactApp", {
         useDevMode: isDev,
@@ -16,7 +16,15 @@ export default defineConfig(({ mode }) => {
       !isDev && react(),
     ],
     server: {
+      cors: true,
       port: 8341,
+      proxy: {
+        "/api": {
+          target: "http://localhost:18089",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ""),
+        },
+      },
     },
   };
 });

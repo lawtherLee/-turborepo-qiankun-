@@ -9,7 +9,7 @@
     "dev:micro-react-app": "turbo dev --filter=micro-react-app",
     "dev:micro-vue-app": "turbo dev --filter=micro-vue-app",
     "dev:micro-test": "turbo dev --filter=micro-test",
-    "start:api": "turbo run start:api",
+    "dev:api": "turbo run dev --filter=api",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
@@ -18,10 +18,13 @@
     "@repo/typescript-config": "workspace:*",
     "prettier": "^3.1.1",
     "syncpack": "^12.3.0",
-    "turbo": "~1.9.6"
+    "turbo": "~2.4.2"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "axios": "~1.5.0"
   }
 }

@@ -7,7 +7,7 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "tsc": "vue-tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

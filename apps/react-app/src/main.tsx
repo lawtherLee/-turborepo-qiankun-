@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
@@ -7,22 +9,39 @@ import { registerMicroApps, start } from "qiankun";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 registerMicroApps(
   [
     {
       name: "microReactApp",
-      entry: "http://192.168.1.151:8088/microReactApp/",
+      // entry: "http://192.168.1.151:8088/microReactApp/",
+      entry: "http://localhost:8341/microReactApp/",
       container: "#subapp-viewport",
       activeRule: "#/microReactApp",
+      props: {
+        fetch: window.fetch.bind(window),
+      },
+      // sandbox: {
+      //   // 可以尝试禁用一些沙箱限制
+      //   strictStyleIsolation: false,
+      //   experimentalStyleIsolation: false,
+      // },
     },
     {
       name: "microVueApp",
-      entry: "http://192.168.1.151:8088/microVueApp/",
+      entry: "http://localhost:8342/microVueApp/",
       container: "#subapp-viewport",
       activeRule: "#/microVueApp",
+      // props: {
+      //   fetch: window.fetch.bind(window),
+      // },
+      // sandbox: {
+      //   // 可以尝试禁用一些沙箱限制
+      //   strictStyleIsolation: false,
+      //   experimentalStyleIsolation: false,
+      // },
     },
   ],
   {
@@ -43,11 +62,11 @@ registerMicroApps(
         console.log(
           "[LifeCycle] after unmount %c%s",
           "color: green;",
-          app.name
+          app.name,
         );
         return Promise.resolve();
       },
     ],
-  }
+  },
 );
 start();

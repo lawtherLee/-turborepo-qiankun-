@@ -10,6 +10,15 @@ export default defineConfig({
     }),
     react(),
   ],
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:18088",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
   css: {
     preprocessorOptions: {
       less: {

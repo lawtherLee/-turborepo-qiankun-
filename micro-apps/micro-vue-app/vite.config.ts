@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const isDev = env.VITE_APP_ENV == "development";
   return {
-    base: '/microVueApp/',
+    base: "/microVueApp/",
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
       qiankun("microVueApp", {
         useDevMode: isDev,
       }),
-      !isDev && vue(),
+      vue(),
     ],
     css: {
       preprocessorOptions: {
@@ -29,6 +29,10 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 8342,
+      cors: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     },
   };
 });
